@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-const connectionDatabase = new Sequelize("", "root", "", {
-    host: "localhost",
-    dialect: "sqlserver",
+const connectionDatabase = new Sequelize("", "", "", {
+    host: "DESKTOP-0C34D10\SQLEXPRESS",
+    dialect: "mssql",
     
   });
 

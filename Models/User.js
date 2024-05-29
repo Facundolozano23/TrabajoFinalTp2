@@ -5,11 +5,11 @@ class User extends Model {}
 
 User.init(
   {
-    name: {
+    userName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    mail: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -17,7 +17,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    isActive: {
+    active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
