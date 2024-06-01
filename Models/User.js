@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import connectionDatabase from "../Connection/connectionDataBase.js";
+import connectionDatabase from "../connection/connectionDataBase.js";
 
 class User extends Model {}
 
@@ -25,6 +25,7 @@ User.init(
   {
     sequelize: connectionDatabase,
     modelName: "User",
+    
   }
 );
 
