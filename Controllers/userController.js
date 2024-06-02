@@ -61,9 +61,9 @@ class UserController {
   updateUser = async (req, res) => {
     try {
       const { id } = req.params;
-      const { userName, email, isActive } = req.body;
+      const { userName, email, active } = req.body;
       const data = await User.update(
-        { name, mail, isActive },
+        { userName, email, active },
         { where: { id } }
       );
       res.status(201).send({
