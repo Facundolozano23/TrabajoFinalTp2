@@ -1,4 +1,4 @@
-import User from "../Models/Toy.js";
+import Toy from "../Models/Toy.js";
 
 class ToyController {
   // createUser(){}
@@ -8,7 +8,7 @@ class ToyController {
       const data = await Toy.create({ toyName, brand, price,minAge,size});
       res.status(201).send({
         success: true,
-        message: `Juguete ${data.toyNameName} creado con exito`,
+        message: `Juguete ${data.toyName} creado con exito`,
       });
     } catch (error) {
       res.status(400).send({ succces: false, message: error.message });
