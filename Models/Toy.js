@@ -36,12 +36,17 @@ class Toy extends Model {}
 
             type: DataTypes.FLOAT,
             allowNull:false,
-        }
+        },
+
+        yearCreation:{
+            type: DataTypes.INTEGER,
+            allowNull:false,
+        },
 
     },  {
         sequelize: connectionDatabase,
         modelName: "Toy",
-        
+        timestamps: false
       }
 
     );
