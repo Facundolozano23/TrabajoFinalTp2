@@ -14,12 +14,20 @@ class Toy extends Model {}
         toyName:{
             type: DataTypes.STRING,
             allowNull:false,
+            validate: {
+                len: [5, 20],
+                is: /^[A-Za-z]+(\s[A-Za-z]+)*$/gi,
+              },
 
         },
 
         brand:{
             type: DataTypes.STRING,
             allowNull:false,
+            validate: {
+                len: [5, 20],
+                is: /^[A-Za-z]+(\s[A-Za-z]+)*$/gi,
+              },
 
         },
 
