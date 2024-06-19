@@ -83,5 +83,19 @@ class UserController {
       res.status(400).send({ succces: false, message: error.message });
     }
   };
-}
+
+  login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const data = await User.findOne({ where: { email } });
+      if (!data) throw new Error("El usuario con ese email no existe, intente nuevamente");
+      const validatePassword = await data.validatePassword(password);
+      if (!validatePassword) throw new Error("La contraseña es inválida, intente nuevamente");
+      const payload = {
+        id: data.id,
+        name: data.name,
+      }; } catch (error) {
+        res.status(400).send({ succces: false, message: error.message });
+      }
+}};
   export default UserController;

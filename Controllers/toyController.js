@@ -1,3 +1,4 @@
+import Category from "../Models/Category.js";
 import Toy from "../Models/Toy.js";
 
 class ToyController {
@@ -34,9 +35,13 @@ class ToyController {
   readToyById = async (req, res) => {
     try {
       const { id } = req.params;
-      const data = await Toy.findAll({
+      const data = await Toy.findOne({
         attributes: ["toyName", "brand", "price","minAge","size","yearCreation"],
         where: { id },
+        include: {
+          model: Category,
+          attributes: ["description"],
+        },
       });
       res.status(201).send({
         success: true,
