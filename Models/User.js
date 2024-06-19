@@ -8,17 +8,26 @@ User.init(
     userName: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {
+        is: /^[A-Za-z]+(\s[A-Za-z]+)*$/gi,
+      },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: true,
+      },
      
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        len: [5, 10],
+      },
     
     },
     active: {
