@@ -23,6 +23,7 @@ class UserController {
         include: {
           model: Role,
           attributes: ["name"],
+          
         },
       });
       res.status(201).send({
