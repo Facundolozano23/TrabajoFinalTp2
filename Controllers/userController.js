@@ -19,10 +19,10 @@ class UserController {
   readAllUser = async (req, res) => {
     try {
       const data = await User.findAll({
-        attributes: ["userName", "email", "active","roleId"],
+        attributes: ["userName", "email", "active"],
         include: {
           model: Role,
-          attributes: ["name"],
+          attributes: ["roleName"],
           
         },
       });
@@ -43,7 +43,7 @@ class UserController {
         where: { id },
         include: {
           model: Role,
-          attributes: ["name"],
+          attributes: ["roleName"],
         },
       });
       res.status(201).send({
@@ -71,9 +71,9 @@ class UserController {
   updateUser = async (req, res) => {
     try {
       const { id } = req.params;
-      const { userName, email, active } = req.body;
+      const { userName, email, active,roleId } = req.body;
       const data = await User.update(
-        { userName, email, active },
+        { userName, email, active,roleId },
         { where: { id } }
       );
       res.status(201).send({

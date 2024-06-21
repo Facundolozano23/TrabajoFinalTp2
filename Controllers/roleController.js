@@ -1,9 +1,9 @@
-import  {Role,User } from "../Models/relations.js";
+import  {Role } from "../Models/relations.js";
 
 class RoleController {
   createRole = async (req, res) => {
     try {
-      const { } = req.body;
+      const {roleName } = req.body;
       const data = await Role.create({roleName});
       res.status(201).send({
         success: true,
@@ -16,14 +16,10 @@ class RoleController {
 
   readAllRoles = async (req, res) => {
     try {
-      const data = await User.findAll({
+      const data = await Role.findAll({
         attributes: ["roleName"],
-        include: {
-          model: User,
-          attributes: ["userName"],
-          
-        },
-      });
+    
+          });
       res.status(201).send({
         success: true,
         message: data,
@@ -39,10 +35,7 @@ class RoleController {
       const data = await Role.findOne({
         attributes: ["roleName"],
         where: { id },
-        include: {
-          model: User,
-          attributes: ["userName"],
-        },
+       
       });
       res.status(201).send({
         success: true,
