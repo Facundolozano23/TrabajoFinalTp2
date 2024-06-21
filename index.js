@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.use("/app", routes);
 
-await connectionDatabase.sync({force:false})
+await connectionDatabase.sync({force:true})
 
 
 app.listen(8080, () => {
