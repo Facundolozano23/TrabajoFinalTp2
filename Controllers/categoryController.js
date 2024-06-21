@@ -33,7 +33,7 @@ readAllCategories = async (req, res) => {
     readCategoryById = async (req, res) => {
       try {
         const { id } = req.params;
-        const data = await Toy.findAll({
+        const data = await Category.findOne({
           attributes: ["description"],
           where: { id },
         });
