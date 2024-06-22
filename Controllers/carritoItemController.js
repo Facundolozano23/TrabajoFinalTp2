@@ -1,12 +1,13 @@
 import Carrito from "../Models/Carrito.js";
 import CarritoItem from "../Models/CarritoItem.js";
+import Toy from "../Models/Toy.js"
 
 class CarritoItemController {
  
   createCarritoItem = async (req, res) => {
     try {
-      const {quantity, carritoId} = req.body;
-      const data = await CarritoItem.create({ quantity,carritoId});
+      const {quantity, carritoId,toyId} = req.body;
+      const data = await CarritoItem.create({ quantity,carritoId,toyId});
       res.status(201).send({
         success: true,
         message: `CarritoItem ${data.id} creado con exito`,
@@ -24,6 +25,8 @@ class CarritoItemController {
         include: {
           model: Carrito,
           attributes: ["id"],
+          model: Toy,
+          attributes:["id","toyName","price","size"],
         },
       });
       res.status(201).send({
@@ -45,6 +48,8 @@ class CarritoItemController {
         include: {
           model: Carrito,
           attributes: ["id"],
+          model: Toy,
+          attributes:["id","toyName","price","size"]
         },
       });
       res.status(201).send({
@@ -72,9 +77,9 @@ class CarritoItemController {
   updateCarritoItem = async (req, res) => {
     try {
       const { id } = req.params;
-      const { quantity,carritoId} = req.body;
+      const { quantity,carritoId,toyId} = req.body;
       const data = await CarritoItem.update(
-        { quantity,userId},
+        { quantity,carritoId,toyId},
         { where: { id } }
       );
       res.status(201).send({
