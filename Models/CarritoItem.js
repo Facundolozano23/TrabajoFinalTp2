@@ -13,7 +13,8 @@ class CarritoItem extends Model {}
         },
         quantity:{
             type: DataTypes.INTEGER,
-          allowNull:false
+          allowNull:false,
+          defaultValue: 0.0
         },
 
         
