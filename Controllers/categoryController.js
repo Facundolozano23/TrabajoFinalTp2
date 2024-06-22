@@ -27,13 +27,14 @@ readAllCategories = async (req, res) => {
     } catch (error) {
       res.status(400).send({ succces: false, message: error.message });
     }
+  };
 
 
 
     readCategoryById = async (req, res) => {
       try {
         const { id } = req.params;
-        const data = await Toy.findAll({
+        const data = await Category.findOne({
           attributes: ["description"],
           where: { id },
         });
@@ -76,6 +77,6 @@ deleteCategory = async (req, res) => {
     }
   };
 
-};}
+}
 
 export default CategoryController; 

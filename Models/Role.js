@@ -5,7 +5,7 @@ class Role extends Model {}
 
 Role.init(
   {
-    name: {
+    roleName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,

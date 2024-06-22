@@ -1,15 +1,15 @@
-import Category from "../Models/Category.js";
-import Toy from "../Models/Toy.js";
+import User from "../Models/User.js";
+import Carrito from "../Models/Carrito.js";
 
-class ToyController {
+class CarritoController {
  
-  createToy = async (req, res) => {
+  createCarrito = async (req, res) => {
     try {
-      const {toyName, brand, price,minAge,size,yearCreation,categoryId} = req.body;
-      const data = await Toy.create({ toyName, brand, price,minAge,size,yearCreation,categoryId});
+      const {processed,cancelled, userId} = req.body;
+      const data = await Carrito.create({ processed,cancelled,userId});
       res.status(201).send({
         success: true,
-        message: `Juguete ${data.toyName} creado con exito`,
+        message: `Carrito ${data.id} creado con exito`,
       });
     } catch (error) {
       res.status(400).send({ succces: false, message: error.message });
@@ -17,13 +17,13 @@ class ToyController {
 
   };
 
-  readAllToys = async (req, res) => {
+  readAllCarritos = async (req, res) => {
     try {
-      const data = await Toy.findAll({
-        attributes: ["toyName", "brand", "price","minAge","size","yearCreation"],
+      const data = await Carrito.findAll({
+        attributes: ["processed","cancelled"],
         include: {
-          model: Category,
-          attributes: ["description"],
+          model: User,
+          attributes: ["userName"],
         },
       });
       res.status(201).send({
@@ -36,15 +36,15 @@ class ToyController {
 
     
   };
-  readToyById = async (req, res) => {
+  readCarritoById = async (req, res) => {
     try {
       const { id } = req.params;
-      const data = await Toy.findOne({
-        attributes: ["toyName", "brand", "price","minAge","size","yearCreation"],
+      const data = await Carrito.findOne({
+        attributes: ["processed","cancelled"],
         where: { id },
         include: {
-          model: Category,
-          attributes: ["description"],
+          model: User,
+          attributes: ["userName"],
         },
       });
       res.status(201).send({
@@ -55,10 +55,10 @@ class ToyController {
       res.status(400).send({ succces: false, message: error.message });
     }
   };
-  deleteToy = async (req, res) => {
+  deleteCarrito = async (req, res) => {
     try {
       const { id } = req.params;
-      const data = await Toy.destroy({
+      const data = await Carrito.destroy({
         where: { id },
       });
       res.status(201).send({
@@ -69,12 +69,12 @@ class ToyController {
       res.status(400).send({ succces: false, message: error.message });
     }
   };
-  updateToy = async (req, res) => {
+  updateCarrito = async (req, res) => {
     try {
       const { id } = req.params;
-      const { toyName, brand, price,minAge,size,yearCreation,categoryId} = req.body;
-      const data = await Toy.update(
-        { toyName, brand, price,minAge,size,yearCreation,categoryId},
+      const { processed,cancelled,userId} = req.body;
+      const data = await Carrito.update(
+        { processed,cancelled,userId},
         { where: { id } }
       );
       res.status(201).send({
@@ -87,4 +87,4 @@ class ToyController {
   };
  
 }
-  export default ToyController;
+  export default CarritoController;
