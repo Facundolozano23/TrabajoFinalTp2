@@ -2,7 +2,7 @@ import Category from "../Models/Category.js";
 import Toy from "../Models/Toy.js";
 
 class ToyController {
-  // createUser(){}
+ 
   createToy = async (req, res) => {
     try {
       const {toyName, brand, price,minAge,size,yearCreation,categoryId} = req.body;
