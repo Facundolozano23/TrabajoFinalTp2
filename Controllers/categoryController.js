@@ -27,6 +27,7 @@ readAllCategories = async (req, res) => {
     } catch (error) {
       res.status(400).send({ succces: false, message: error.message });
     }
+  };
 
 
 
@@ -76,6 +77,6 @@ deleteCategory = async (req, res) => {
     }
   };
 
-};}
+}
 
 export default CategoryController; 
