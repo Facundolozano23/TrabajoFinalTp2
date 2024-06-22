@@ -1,12 +1,14 @@
-import  { User, Role } from "../Models/relations.js";
+import  { User, Role,Carrito } from "../Models/relations.js";
+import { generateToken, verifyToken } from "../utils/token.js";
+
 
 class UserController {
-  // createUser(){}
+  
 
   createUser = async (req, res) => {
     try {
-      const { userName, email, password,roleId} = req.body;
-      const data = await User.create({ userName, email, password,roleId });
+      const { userName, email, password,roleId,carritoId} = req.body;
+      const data = await User.create({ userName, email, password,roleId,carritoId });
       res.status(201).send({
         success: true,
         message: `Usuario ${data.userName} creado con exito`,
@@ -23,6 +25,8 @@ class UserController {
         include: {
           model: Role,
           attributes: ["roleName"],
+          model: Carrito,
+          attributes: ["id","processed","cancelled"],
           
         },
       });
@@ -44,6 +48,11 @@ class UserController {
         include: {
           model: Role,
           attributes: ["roleName"],
+          model: Carrito,
+          attributes: ["id"],
+          model: Carrito,
+          attributes: ["id","processed","cancelled"],
+          
         },
       });
       res.status(201).send({
@@ -71,9 +80,9 @@ class UserController {
   updateUser = async (req, res) => {
     try {
       const { id } = req.params;
-      const { userName, email, active,roleId } = req.body;
+      const { userName, email, active,roleId,carritoId } = req.body;
       const data = await User.update(
-        { userName, email, active,roleId },
+        { userName, email, active,roleId,carritoId },
         { where: { id } }
       );
       res.status(201).send({
@@ -94,9 +103,30 @@ class UserController {
       if (!validatePassword) throw new Error("La contraseña es inválida, intente nuevamente");
       const payload = {
         id: data.id,
-        name: data.name,
-      }; } catch (error) {
+        name: data.userName,
+      }; const token = generateToken(payload);
+      res.cookie("token", token); 
+      res.status(200).send({
+        success: true,
+        message: "Usuario logueado con éxito",
+      }); }
+       catch (error) {
         res.status(400).send({ succces: false, message: error.message });
       }
-}};
+}
+me = async (req, res) => {
+  try {
+   
+    const { user } = req;
+    console.log(`🚀 ~ UserController ~ me= ~ user:`, user)
+    res.status(200).send({
+      success: true,
+      message: user,
+    });
+  } catch (error) {
+    res.status(400).send({ succces: false, message: error.message });
+  }
+};
+
+};
   export default UserController;
