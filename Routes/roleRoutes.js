@@ -6,6 +6,9 @@ const roleRoutes= Router();
 
 roleRoutes.post("/", roleController.createRole);
 roleRoutes.get("/", roleController.readAllRoles);
-roleRoutes.put("/", roleController.updateROle);
+roleRoutes.get("/:id", roleController.readRoleById)
+roleRoutes.put("/:id", roleController.updateROle);
+roleRoutes.delete("/:id", roleController.deleteRole)
+
 
 export default roleRoutes;
