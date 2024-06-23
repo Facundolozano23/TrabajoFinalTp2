@@ -5,8 +5,8 @@ class ToyController {
  
   createToy = async (req, res) => {
     try {
-      const {toyName, brand, price,minAge,size,yearCreation,categoryId} = req.body;
-      const data = await Toy.create({ toyName, brand, price,minAge,size,yearCreation,categoryId});
+      const {toyName, brand, price,minAge,size,yearCreation,photo,categoryId} = req.body;
+      const data = await Toy.create({ toyName, brand, price,minAge,size,yearCreation,photo,categoryId});
       res.status(201).send({
         success: true,
         message: `Juguete ${data.toyName} creado con exito`,
@@ -20,7 +20,7 @@ class ToyController {
   readAllToys = async (req, res) => {
     try {
       const data = await Toy.findAll({
-        attributes: ["toyName", "brand", "price","minAge","size","yearCreation"],
+        attributes: ["id","toyName", "brand", "price","minAge","size","yearCreation","photo"],
         include: {
           model: Category,
           attributes: ["description"],
@@ -40,7 +40,7 @@ class ToyController {
     try {
       const { id } = req.params;
       const data = await Toy.findOne({
-        attributes: ["toyName", "brand", "price","minAge","size","yearCreation"],
+        attributes: ["id","toyName", "brand", "price","minAge","size","yearCreation","photo"],
         where: { id },
         include: {
           model: Category,
@@ -72,9 +72,9 @@ class ToyController {
   updateToy = async (req, res) => {
     try {
       const { id } = req.params;
-      const { toyName, brand, price,minAge,size,yearCreation,categoryId} = req.body;
+      const { toyName, brand, price,minAge,size,yearCreation,photo,categoryId} = req.body;
       const data = await Toy.update(
-        { toyName, brand, price,minAge,size,yearCreation,categoryId},
+        { toyName, brand, price,minAge,size,yearCreation,photo,categoryId},
         { where: { id } }
       );
       res.status(201).send({
