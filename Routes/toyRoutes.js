@@ -7,7 +7,7 @@ const toyRoutes = Router();
 
 toyRoutes.post("/createtoy", toyController.createToy);
 toyRoutes.get("/alltoys", toyController.readAllToys);
-toyRoutes.get("/:id", toyController.readToyById)
+toyRoutes.get("/byid/:id", toyController.readToyById)
 toyRoutes.put("/:id", toyController.updateToy);
 toyRoutes.delete("/:id", toyController.deleteToy)
 
