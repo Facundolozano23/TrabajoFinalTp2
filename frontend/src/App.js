@@ -11,8 +11,8 @@ const App=()=> {
     <BrowserRouter>
    <Routes>
         <Route exact path='/toy' element={<GetToys />} />
-        <Route exact path='/:id' element={<ToyDetails />} />
-        <Route exact path='/create' element={<CreateToy />} />
+        <Route exact path='/toy/:id' element={<ToyDetails />} />
+        <Route exact path='/toy/create' element={<CreateToy />} />
   </Routes>
     </BrowserRouter>
   );

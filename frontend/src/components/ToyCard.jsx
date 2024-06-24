@@ -17,7 +17,7 @@ const ToyCard = ({ toy }) => {
                      
                     </Card.Text>
 
-                    <Link to={`toy/${toy.id}`}>
+                    <Link to={`/toy/${toy.id}`}>
                        <Button>Detalle</Button>
                     </Link>
                 </Card.Body>
