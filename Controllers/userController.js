@@ -128,5 +128,18 @@ me = async (req, res) => {
   }
 };
 
+logout = async (req, res) => {
+  try {
+   
+    res.clearCookie("token");
+    res.status(200).send({
+      success: true,
+      message: "Tu sesión se acaba de cerrar",
+    });
+  } catch (error) {
+    res.status(400).send({ success: false, message: error.message });
+  }
+};
+
 };
   export default UserController;

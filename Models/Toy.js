@@ -51,6 +51,11 @@ class Toy extends Model {}
             allowNull:false,
         },
 
+        photo: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+
     },  {
         sequelize: connectionDatabase,
         modelName: "Toy",

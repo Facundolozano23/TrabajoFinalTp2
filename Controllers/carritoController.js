@@ -1,14 +1,15 @@
 import User from "../Models/User.js";
 import Carrito from "../Models/Carrito.js";
 import CarritoItem from "../Models/CarritoItem.js";
+import Pedido from "../Models/Pedido.js";
 
 
 class CarritoController {
  
   createCarrito = async (req, res) => {
     try {
-      const {processed,cancelled, userId,carritoId} = req.body;
-      const data = await Carrito.create({ processed,cancelled,userId,carritoId});
+      const {processed,cancelled, userId,carritoId, pedidoId} = req.body;
+      const data = await Carrito.create({ processed,cancelled,userId,carritoId,pedidoId});
       res.status(201).send({
         success: true,
         message: `Carrito ${data.id} creado con exito`,
@@ -28,6 +29,8 @@ class CarritoController {
           attributes: ["userName"],
           model: CarritoItem,
           attributes:["id","quantity"],  
+          model: Pedido,
+          attributes:["id","subTotalAmount","totalAmount"],  
           
         },
       });
@@ -52,6 +55,8 @@ class CarritoController {
           attributes: ["userName"],
           model: CarritoItem,
           attributes:["id","quantity"],  
+          model: Pedido,
+          attributes:["id","subTotalAmount","totalAmount"],  
         
           
         },
@@ -81,9 +86,9 @@ class CarritoController {
   updateCarrito = async (req, res) => {
     try {
       const { id } = req.params;
-      const { processed,cancelled,userId,toyId} = req.body;
+      const { processed,cancelled,userId,pedidoId} = req.body;
       const data = await Carrito.update(
-        { processed,cancelled,userId},
+        { processed,cancelled,userId, pedidoId},
         { where: { id } }
       );
       res.status(201).send({
