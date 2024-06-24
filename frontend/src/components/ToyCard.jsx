@@ -7,9 +7,9 @@ import Button from 'react-bootstrap/Button';
 const ToyCard = ({ toy }) => {
     return (
         <>
-
+            <div className="toy-card">
             <Card className='shadow-lg m-2 p-3 rounded' style={{ width: '18rem' }}>
-                <Card.Img src={toy.photo} />
+                <Card.Img src={toy.photo} className="toy-photo" />
                 <Card.Body>
                     <Card.Title>Nombre: {toy.toyName}</Card.Title>
                     <Card.Title>Precio: ${toy.price}</Card.Title>
@@ -25,7 +25,7 @@ const ToyCard = ({ toy }) => {
 
 
             </Card>
-
+            </div>
 
         </>
     )

@@ -25,7 +25,7 @@ const GetToys = () => {
     }, []);
   
     return (
-      <><Container>  <h1 className="text-center">Lista de Juguetes</h1>
+      <><Container>  <h1 className="text-center heading-color">Lista de Juguetes</h1>
       <hr /></Container>
       
         {error && <p>{error}</p>}
@@ -33,9 +33,10 @@ const GetToys = () => {
              <ul> 
           {toys.map((toy, index) => (
             <Col md={6} lg={4} sm={12} key={index}>
-              <h2>{toy.toyName}</h2>
+               <div className="toy-container">
+              <h2 className="toy-name">{toy.toyName}</h2>
               <ToyCard toy={toy} />
-              {toy.Category && <p>Categoría: {toy.Category.description}</p>}
+              </div>
             </Col>
           ))}
         </ul></Row>
